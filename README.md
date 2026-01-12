@@ -1,4 +1,4 @@
-# Workflow with Agents
+# AI Workflow
 
 A structured meta-documentation system for human-AI collaboration on software projects.
 
@@ -11,30 +11,73 @@ A workflow system that helps AI agents and humans work together effectively. The
 - **Clear workflows** - Simple `>>` commands that expand to full protocols
 - **Zero context loss** - Resume work quickly with self-documenting work items
 - **Hierarchical documentation** - Minimal always-loaded core, details loaded on-demand
+- **Dual-mode operation** - Works within a project-hub or standalone in any project
 
-## Quick Start
+## Deployment Modes
 
-### 1. Copy to your project
+This system supports two deployment modes:
 
-In your project root:
+| Mode | Location | Outputs go to |
+|------|----------|---------------|
+| **Project-Hub** | `project-hub/ai-workflow/` | Project's folders (`5-work/`, `2-knowledge/`, etc.) |
+| **Standalone** | `<project>/ai-workflow/` | ai-workflow's folders (`work/`, `knowledge/`, etc.) |
 
-    mkdir -p ai-agent
-    cp -r meta ai-agent/
+See [meta/MODE.md](meta/MODE.md) for full details on mode detection and path resolution.
 
-The agent will create work/, knowledge/, and other folders when needed.
+---
+
+## Quick Start: Project-Hub Mode
+
+If ai-workflow is part of a project-hub (shared across projects):
+
+### 1. Clone into project-hub
+
+```bash
+cd project-hub
+git clone <ai-workflow-remote> ai-workflow
+```
 
 ### 2. Point the agent to the system
 
-First time only - Tell the agent:
+Tell the agent:
 
-    Please read ai-agent/meta/CORE.md - this explains our workflow system.
+    Please read ai-workflow/meta/CORE.md - this explains our workflow system.
 
-The agent reads the core documentation (~200 lines) and loads protocol details on-demand.
+### 3. The agent detects mode automatically
+
+The agent sees `coordination/` and `projects/` in the parent folder and knows outputs go to the project's folders.
+
+### 4. Start work
+
+    Human: >>start feat my-first-feature
+    AI: [Creates work item in projects/<group>/<project>-root/5-work/]
+
+---
+
+## Quick Start: Standalone Mode
+
+If ai-workflow is embedded in a single project:
+
+### 1. Copy to your project
+
+```bash
+cd your-project
+git clone <ai-workflow-remote> ai-workflow
+# Or: cp -r /path/to/ai-workflow ./ai-workflow
+```
+
+### 2. Point the agent to the system
+
+Tell the agent:
+
+    Please read ai-workflow/meta/CORE.md - this explains our workflow system.
+
+The agent reads the core documentation and loads protocol details on-demand.
 
 ### 3. Initialize knowledge
 
     Human: >>init-knowledge
-    AI: [Asks questions, creates knowledge/SYSTEM-OVERVIEW.md]
+    AI: [Asks questions, creates ai-workflow/knowledge/SYSTEM-OVERVIEW.md]
 
     Human: >>scan-repo
     AI: [Scans your codebase]
@@ -42,7 +85,7 @@ The agent reads the core documentation (~200 lines) and loads protocol details o
 ### 4. Start work
 
     Human: >>start feat my-first-feature
-    AI: [Creates work item folder, asks questions]
+    AI: [Creates work item in ai-workflow/work/]
 
 ## Work Types
 
@@ -78,24 +121,53 @@ Concept work has additional phases: >>extract, >>conceptualize, >>plan, >>roadma
 
 The system uses hierarchical loading to minimize context usage:
 
-1. **CORE.md** (~200 lines) - Always loaded, navigation hub
-2. **protocols/** - Loaded on-demand when commands are used
-3. **reference/** - Consulted as needed for conventions
-
-This replaced the previous monolithic FOR-AGENTS.md (1700+ lines).
+1. **CORE.md** (~250 lines) - Always loaded, navigation hub
+2. **MODE.md** - Mode detection and path resolution
+3. **protocols/** - Loaded on-demand when commands are used
+4. **reference/** - Consulted as needed for conventions
 
 ## Folder Structure
 
-    ai-agent/
-    ├── meta/           # System docs (copied from this repo)
-    │   ├── CORE.md
-    │   ├── protocols/
-    │   ├── reference/
-    │   └── templates/
-    ├── work/           # Active work items
-    ├── knowledge/      # Project knowledge base
-    ├── concepts/       # Finalized concepts
-    └── workplans/      # Finalized work plans
+### Project-Hub Mode (ai-workflow is read-only, outputs go to project)
+```
+project-hub/
+├── coordination/           # Hub orchestration
+├── ai-workflow/            # THIS REPO (shared, read-only except feedback)
+│   └── meta/
+│       ├── CORE.md
+│       ├── MODE.md
+│       ├── protocols/
+│       ├── reference/
+│       ├── templates/
+│       └── meta-feedback/  # Workflow feedback (write OK)
+└── projects/<group>/<project>-root/
+    ├── CONTEXT.md          # Project entry point
+    ├── 1-concepts/
+    ├── 2-knowledge/
+    ├── 3-inbox/
+    ├── 4-workplans/
+    ├── 5-work/             # Work items go here
+    └── 6-instances/
+```
+
+### Standalone Mode (ai-workflow contains everything)
+```
+<project>/
+├── ai-workflow/            # THIS REPO (embedded)
+│   ├── meta/
+│   │   ├── CORE.md
+│   │   ├── MODE.md
+│   │   ├── protocols/
+│   │   ├── reference/
+│   │   ├── templates/
+│   │   └── meta-feedback/
+│   ├── work/               # Work items go here
+│   ├── knowledge/
+│   ├── concepts/
+│   ├── workplans/
+│   └── inbox/
+└── <source>/               # Project source code
+```
 
 ## License
 

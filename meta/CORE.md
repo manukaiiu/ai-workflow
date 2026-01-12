@@ -4,13 +4,35 @@
 
 ---
 
+## Dual-Mode Operation
+
+This system runs in two modes. **Detect your mode first:**
+
+| Parent folder contains... | Mode | Output location |
+|---------------------------|------|-----------------|
+| `coordination/` + `projects/` | **Project-Hub** | Project's folders |
+| Neither | **Standalone** | ai-workflow's folders |
+
+**Full details:** [MODE.md](MODE.md)
+
+---
+
 ## Mental Model
 
 You're working with a structured documentation system for human-AI collaboration.
-- **Work** happens in numbered folders (`ai-agent/work/NNN-type-name/`)
+- **Work** happens in numbered folders (`{WORK_ROOT}/NNN-type-name/`)
 - **Documents** track state (00-OVERVIEW.md is always the source of truth)
 - **Commands** (`>>command`) trigger protocols in `protocols/` folder
-- **Knowledge** accumulates in `ai-agent/knowledge/`
+- **Knowledge** accumulates in `{KNOWLEDGE_ROOT}`
+
+**Path variables** (see [MODE.md](MODE.md) for resolution):
+| Variable | Project-Hub Mode | Standalone Mode |
+|----------|------------------|-----------------|
+| `{WORK_ROOT}` | `<project>-root/5-work/` | `ai-workflow/work/` |
+| `{KNOWLEDGE_ROOT}` | `<project>-root/2-knowledge/` | `ai-workflow/knowledge/` |
+| `{CONCEPTS_ROOT}` | `<project>-root/1-concepts/` | `ai-workflow/concepts/` |
+| `{WORKPLANS_ROOT}` | `<project>-root/4-workplans/` | `ai-workflow/workplans/` |
+| `{INBOX_ROOT}` | `<project>-root/3-inbox/` | `ai-workflow/inbox/` |
 
 ---
 
@@ -70,13 +92,31 @@ Read [protocols/concept/overview.md](protocols/concept/overview.md) first, then 
 
 **Every session, do this:**
 
-1. **Check work index** (if exists): Read `ai-agent/work/WORK-INDEX.md` for overview
-2. **Or list work folders**: `ls ai-agent/work/`
+### Step 0: Detect Mode
+
+Check parent folder for `coordination/` and `projects/`:
+- **Both present** → Project-Hub mode (read project's `CONTEXT.md` first)
+- **Neither present** → Standalone mode
+
+### Project-Hub Mode
+
+1. **Identify active project**: Read `projects/<group>/<project>-root/CONTEXT.md`
+2. **Check work index** (if exists): Read `<project>-root/5-work/WORK-INDEX.md`
+3. **Or list work folders**: `ls <project>-root/5-work/`
+4. **If active work exists**: Read that work item's `00-OVERVIEW.md`
+
+### Standalone Mode
+
+1. **Check work index** (if exists): Read `ai-workflow/work/WORK-INDEX.md`
+2. **Or list work folders**: `ls ai-workflow/work/`
 3. **If active work exists**: Read that work item's `00-OVERVIEW.md`
-4. **The OVERVIEW tells you**:
-   - Current phase and status
-   - What to do next
-   - Which protocol file to read
+
+### Both Modes
+
+**The OVERVIEW tells you**:
+- Current phase and status
+- What to do next
+- Which protocol file to read
 
 **No active work?** Wait for human to specify what to do.
 
@@ -87,11 +127,12 @@ Read [protocols/concept/overview.md](protocols/concept/overview.md) first, then 
 **If your context was summarized/compressed, or you're a new agent continuing work:**
 
 1. Check `git status` (uncommitted changes?)
-2. List work folders: `ls ai-agent/work/`
-3. Read active work item's `00-OVERVIEW.md`
-4. Read last entry in progress log (03-PROGRESS-LOG.md or 06-PROGRESS-LOG.md)
-5. If OVERVIEW has "Pause Context" section → follow its resume steps
-6. **Confirm with human** before proceeding
+2. **Detect mode** (see Session Start Protocol above)
+3. List work folders: `ls {WORK_ROOT}`
+4. Read active work item's `00-OVERVIEW.md`
+5. Read last entry in progress log (03-PROGRESS-LOG.md or 06-PROGRESS-LOG.md)
+6. If OVERVIEW has "Pause Context" section → follow its resume steps
+7. **Confirm with human** before proceeding
 
 For detailed recovery: [protocols/recovery.md](protocols/recovery.md)
 
@@ -156,15 +197,16 @@ Quick status check - no file changes:
 
 ## Output Location Rules
 
-**Where do I create/edit files?**
+**Where do I create/edit files?** (Paths resolve based on mode - see [MODE.md](MODE.md))
 
 | Situation | Location | Why |
 |-----------|----------|-----|
-| Active work on a work item | `work/NNN-TYPE-name/` | Keep work contained |
-| Deliverables from work item | `work/NNN-TYPE-name/90-OUTPUTS/` | Track with work item |
+| Active work on a work item | `{WORK_ROOT}/NNN-TYPE-name/` | Keep work contained |
+| Deliverables from work item | `{WORK_ROOT}/NNN-TYPE-name/90-OUTPUTS/` | Track with work item |
 | Finalizing concept/workplan | Use `>>finalize` protocol | Controlled promotion |
 | User asks to edit finalized output | **Ask first**: "Edit in place, or create new version?" | Protect finalized work |
 | User asks to create file outside work item | **Confirm location** with user | Avoid accidental bypass |
+| Workflow system feedback | `ai-workflow/meta/meta-feedback/` | Always here, both modes |
 
 **Key rule**: If there's an active work item, outputs belong there until finalized.
 
@@ -190,6 +232,7 @@ When human says these phrases, treat as the corresponding command:
 
 | Topic | Read |
 |-------|------|
+| **Dual-mode operation** | [MODE.md](MODE.md) |
 | Starting any work | [protocols/start.md](protocols/start.md) |
 | Concept workflow overview | [protocols/concept/overview.md](protocols/concept/overview.md) |
 | File naming conventions | [reference/FILE-CONVENTIONS.md](reference/FILE-CONVENTIONS.md) |
@@ -203,25 +246,45 @@ When human says these phrases, treat as the corresponding command:
 
 ## Folder Structure
 
+### Project-Hub Mode
 ```
-ai-agent/
-├── meta/                    ← You are here (system docs)
-│   ├── CORE.md             ← This file (read every session)
-│   ├── protocols/          ← Command details (read on-demand)
-│   ├── reference/          ← Conventions, glossary (consult when needed)
-│   ├── templates/          ← Document templates
-│   └── meta-feedback/      ← Workflow system learnings (not project feedback)
-│       └── FEEDBACK-INDEX.md
-├── inbox/                   ← Staged inputs before work items exist
-│   ├── INBOX.md            ← Index of staged inputs
-│   └── [files]/            ← Staged input files
-├── work/                    ← Active work items
-│   ├── WORK-INDEX.md       ← Index of all work items (optional but helpful)
-│   ├── 001-feat-name/
-│   └── 002-maint-name/
-├── concepts/                ← Finalized concepts (after >>finalize)
-├── workplans/               ← Finalized work plans (after >>finalize)
-└── knowledge/               ← Project knowledge base
+project-hub/
+├── coordination/                  ← Hub orchestration
+├── ai-workflow/                   ← Shared workflow system (READ-ONLY)
+│   └── meta/                      ← You are here
+│       ├── CORE.md                ← This file
+│       ├── MODE.md                ← Dual-mode details
+│       ├── protocols/             ← Command details
+│       ├── reference/             ← Conventions, glossary
+│       ├── templates/             ← Document templates
+│       └── meta-feedback/         ← Workflow feedback (WRITE OK)
+└── projects/<group>/<project>-root/
+    ├── CONTEXT.md                 ← Project entry point
+    ├── 1-concepts/                ← {CONCEPTS_ROOT}
+    ├── 2-knowledge/               ← {KNOWLEDGE_ROOT}
+    ├── 3-inbox/                   ← {INBOX_ROOT}
+    ├── 4-workplans/               ← {WORKPLANS_ROOT}
+    ├── 5-work/                    ← {WORK_ROOT}
+    └── 6-instances/               ← Running environments
+```
+
+### Standalone Mode
+```
+<project>/
+├── ai-workflow/                   ← Embedded workflow system
+│   ├── meta/                      ← You are here
+│   │   ├── CORE.md                ← This file
+│   │   ├── MODE.md                ← Dual-mode details
+│   │   ├── protocols/             ← Command details
+│   │   ├── reference/             ← Conventions, glossary
+│   │   ├── templates/             ← Document templates
+│   │   └── meta-feedback/         ← Workflow feedback
+│   ├── work/                      ← {WORK_ROOT}
+│   ├── knowledge/                 ← {KNOWLEDGE_ROOT}
+│   ├── concepts/                  ← {CONCEPTS_ROOT}
+│   ├── workplans/                 ← {WORKPLANS_ROOT}
+│   └── inbox/                     ← {INBOX_ROOT}
+└── <project-source>/              ← Actual project code
 ```
 
 ---
