@@ -16,7 +16,7 @@ _Items that should be addressed soon_
 
 | ID | Type | Description | Source |
 |----|------|-------------|--------|
-| | | | |
+| B001 | feat | Work packages support - optional sub-project scoping | project-hub/_meta/roadmap/005-work-packages-support.md |
 
 ---
 

@@ -149,6 +149,42 @@ Is that the right location, or did you want it somewhere else?"
 
 ---
 
+## Work Packages (Optional Scoping)
+
+When a project has `WORKPACKAGES.md`, numbered folders support optional scoping.
+
+### Scoped Paths
+
+Within scoped projects, paths may include work package prefixes:
+
+| Standard Path | Scoped Equivalent |
+|---------------|-------------------|
+| `{CONCEPTS_ROOT}/name/` | `{CONCEPTS_ROOT}/wp1-name/` or `{CONCEPTS_ROOT}/_root/name/` |
+| `{KNOWLEDGE_ROOT}/file.md` | `{KNOWLEDGE_ROOT}/wp1-data/file.md` or `{KNOWLEDGE_ROOT}/_root/file.md` |
+| `{WORK_ROOT}/001-feat-name/` | `{WORK_ROOT}/001-feat-[wp1]-name/` |
+
+### Detection
+
+Check for `WORKPACKAGES.md` at project-root level:
+- **Present**: Project uses work packages - respect scoping
+- **Absent**: Standard (unscoped) project
+
+### Work Item Scoping
+
+Work items can include scope in their name:
+- `001-feat-[wp1]-data-pipeline` → belongs to WP1
+- `002-maint-[root]-governance` → belongs to project root
+- `003-bug-fix-typo` → belongs to `_root` (implicit)
+
+### Knowledge/Concepts Scoping
+
+When creating scoped content:
+- Place in appropriate subfolder: `{KNOWLEDGE_ROOT}/wp1-name/`
+- `_root/` subfolder for project-wide content
+- Unscoped files at root level belong to `_root` implicitly
+
+---
+
 ## Summary
 
 | Principle | Implementation |
@@ -160,3 +196,4 @@ Is that the right location, or did you want it somewhere else?"
 | Confirm when uncertain | Ask about location for anything unusual |
 | Track everything | Work items provide traceability |
 | Feedback always writable | `ai-workflow/feedback/` in both modes |
+| Check for work packages | If `WORKPACKAGES.md` exists, respect scoping |

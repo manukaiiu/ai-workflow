@@ -47,6 +47,8 @@ You're working with a structured documentation system for human-AI collaboration
 
 Folder naming: `NNN-TYPE-name` (e.g., `001-feat-user-auth`, `002-concept-platform`)
 
+**Work packages**: For large projects, optional `[scope]` prefix: `001-feat-[wp1]-name`. See [reference/FILE-CONVENTIONS.md](reference/FILE-CONVENTIONS.md).
+
 ---
 
 ## Commands → Protocols

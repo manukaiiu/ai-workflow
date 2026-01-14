@@ -15,6 +15,13 @@
 >>start my-feature           # Defaults to feat if type omitted
 ```
 
+**With work packages** (when `WORKPACKAGES.md` exists):
+```
+>>start feat [wp1] data-pipeline    # Scoped to WP1
+>>start maint [root] governance     # Scoped to project root
+>>start feat setup                  # Implicit _root scope
+```
+
 ---
 
 ## Protocol Steps
@@ -47,10 +54,13 @@ mkdir -p {WORK_ROOT}
 
 ### 4. Create Work Folder
 
-Format: `{WORK_ROOT}/NNN-TYPE-name/`
+Format: `{WORK_ROOT}/NNN-TYPE-name/` or `{WORK_ROOT}/NNN-TYPE-[scope]-name/`
 - 3-digit number (001, 002, etc.)
 - Work type prefix (feat, maint, bug, concept)
+- Optional `[scope]` if work packages are used (e.g., `[wp1]`, `[root]`)
 - Kebab-case name
+
+**Work package detection**: Check if `WORKPACKAGES.md` exists at project-root. If yes, include scope in folder name when specified.
 
 ### 5. Copy Templates
 

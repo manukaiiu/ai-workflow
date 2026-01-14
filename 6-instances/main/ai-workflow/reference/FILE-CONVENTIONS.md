@@ -33,21 +33,29 @@ ai-workflow/
 
 ## Work Item Folder Naming
 
-**Pattern**: `NNN-TYPE-name`
+**Pattern**: `NNN-TYPE-name` or `NNN-TYPE-[scope]-name`
 
 | Component | Rule | Example |
 |-----------|------|---------|
 | NNN | 3-digit sequential number | `001`, `002`, `047` |
 | TYPE | Work type prefix | `feat`, `bug`, `maint`, `concept` |
+| [scope] | Optional work package scope | `[wp1]`, `[root]` |
 | name | Kebab-case description | `user-auth`, `deps-update` |
 
-**Examples**:
+**Standard Examples**:
 - `001-feat-user-authentication`
 - `002-maint-dependency-updates`
 - `003-bug-login-timeout`
 - `004-concept-new-platform`
 
+**Scoped Examples** (when using work packages):
+- `001-feat-[wp1]-data-pipeline`
+- `002-maint-[wp2]-model-update`
+- `003-feat-[root]-project-governance`
+
 **Numbering Rule**: Find highest number across ALL folders in `work/`, add 1.
+
+**Scope Rule**: Scope prefix is optional. When omitted, work item belongs to `_root` implicitly. See `templates/WORKPACKAGES.md` for work package setup.
 
 ---
 
@@ -173,6 +181,38 @@ workplans/[name]/v1/
 ```
 
 **Version folders**: `v1`, `v2`, etc.
+
+---
+
+## Work Packages (Optional)
+
+For large projects with semi-independent components, you can organize by work package.
+
+**Setup**: Create `WORKPACKAGES.md` at project-root level. See `templates/WORKPACKAGES.md`.
+
+**Scoped Folder Structure**:
+```
+project-root/
+├── WORKPACKAGES.md
+├── 1-concepts/
+│   ├── _root/              ← Project-wide concepts
+│   ├── wp1-data/           ← WP1-specific concepts
+│   └── wp2-models/         ← WP2-specific concepts
+├── 2-knowledge/
+│   ├── _root/
+│   ├── wp1-data/
+│   └── wp2-models/
+└── 5-work/
+    ├── 001-feat-[wp1]-pipeline/
+    ├── 002-feat-[wp2]-training/
+    └── 003-maint-[root]-governance/
+```
+
+**Key Points**:
+- `_root/` folder is always present (project-wide scope)
+- Work items use `[scope]` prefix in name
+- Unscoped items belong to `_root` implicitly
+- Most projects don't need this - only use for large multi-component projects
 
 ---
 
