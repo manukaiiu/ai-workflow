@@ -22,7 +22,7 @@ This system supports two deployment modes:
 | **Project-Hub** | `project-hub/ai-workflow/` | Project's folders (`5-work/`, `2-knowledge/`, etc.) |
 | **Standalone** | `<project>/ai-workflow/` | ai-workflow's folders (`work/`, `knowledge/`, etc.) |
 
-See [meta/MODE.md](meta/MODE.md) for full details on mode detection and path resolution.
+See [MODE.md](MODE.md) for full details on mode detection and path resolution.
 
 ---
 
@@ -41,7 +41,7 @@ git clone <ai-workflow-remote> ai-workflow
 
 Tell the agent:
 
-    Please read ai-workflow/meta/CORE.md - this explains our workflow system.
+    Please read ai-workflow/CORE.md - this explains our workflow system.
 
 ### 3. The agent detects mode automatically
 
@@ -70,7 +70,7 @@ git clone <ai-workflow-remote> ai-workflow
 
 Tell the agent:
 
-    Please read ai-workflow/meta/CORE.md - this explains our workflow system.
+    Please read ai-workflow/CORE.md - this explains our workflow system.
 
 The agent reads the core documentation and loads protocol details on-demand.
 
@@ -113,9 +113,9 @@ Concept work has additional phases: >>extract, >>conceptualize, >>plan, >>roadma
 
 | Audience | File |
 |----------|------|
-| Humans | meta/FOR-HUMANS.md |
-| AI Agents | meta/CORE.md |
-| Reference | meta/reference/ |
+| Humans | FOR-HUMANS.md |
+| AI Agents | CORE.md |
+| Reference | reference/ |
 
 ## Architecture
 
@@ -133,13 +133,12 @@ The system uses hierarchical loading to minimize context usage:
 project-hub/
 ├── coordination/           # Hub orchestration
 ├── ai-workflow/            # THIS REPO (shared, read-only except feedback)
-│   └── meta/
-│       ├── CORE.md
-│       ├── MODE.md
-│       ├── protocols/
-│       ├── reference/
-│       ├── templates/
-│       └── meta-feedback/  # Workflow feedback (write OK)
+│   ├── CORE.md
+│   ├── MODE.md
+│   ├── protocols/
+│   ├── reference/
+│   ├── templates/
+│   └── feedback/           # Workflow feedback (write OK)
 └── projects/<group>/<project>-root/
     ├── CONTEXT.md          # Project entry point
     ├── 1-concepts/
@@ -154,13 +153,12 @@ project-hub/
 ```
 <project>/
 ├── ai-workflow/            # THIS REPO (embedded)
-│   ├── meta/
-│   │   ├── CORE.md
-│   │   ├── MODE.md
-│   │   ├── protocols/
-│   │   ├── reference/
-│   │   ├── templates/
-│   │   └── meta-feedback/
+│   ├── CORE.md
+│   ├── MODE.md
+│   ├── protocols/
+│   ├── reference/
+│   ├── templates/
+│   ├── feedback/
 │   ├── work/               # Work items go here
 │   ├── knowledge/
 │   ├── concepts/

@@ -55,19 +55,19 @@ Format: `{WORK_ROOT}/NNN-TYPE-name/`
 ### 5. Copy Templates
 
 **For `feat` (features)**:
-- Copy from `meta/templates/features/`
+- Copy from `templates/features/`
 - Set status "Planning", date
 
 **For `maint` (maintenance)**:
-- Copy from `meta/templates/maintenance/`
+- Copy from `templates/maintenance/`
 - Set status "Planning", date
 
 **For `bug` (bugs)**:
-- Copy from `meta/templates/features/`
+- Copy from `templates/features/`
 - Set status "Investigating", date
 
 **For `concept`**:
-- Copy from `meta/templates/concept/`
+- Copy from `templates/concept/`
 - Create `01-INPUTS/` subfolder
 - Set status "Gathering", date
 - See [protocols/concept/gather.md](concept/gather.md) for full concept setup
@@ -98,7 +98,7 @@ If `{WORK_ROOT}/WORK-INDEX.md` exists, add entry to "Active Work Items":
 | NNN | TYPE | name | Planning | - | YYYY-MM-DD |
 ```
 
-If it doesn't exist, create from template `ai-workflow/meta/templates/WORK-INDEX.md`.
+If it doesn't exist, create from template `ai-workflow/templates/WORK-INDEX.md`.
 
 ---
 

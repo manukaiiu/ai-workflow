@@ -7,7 +7,7 @@ Use `>>feedback` command to add new entries.
 ## How to Use
 
 **Quick feedback** (human): Create `FB-NNN-short-name.md` with freeform notes
-**Structured feedback** (agent-assisted): Use template from `meta/templates/FEEDBACK.md`
+**Structured feedback** (agent-assisted): Use template from `templates/FEEDBACK.md`
 
 ## Naming Convention
 

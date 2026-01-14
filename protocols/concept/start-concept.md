@@ -37,7 +37,7 @@ ai-agent/work/NNN-concept-name/
 
 ### 5. Copy and Customize Templates
 
-From `meta/templates/concept/`:
+From `templates/concept/`:
 - `00-OVERVIEW.md`: Set name, status "Gathering", date
 - `01-INPUTS/INDEX.md`: Empty inventory ready for inputs
 - `08-OPEN-QUESTIONS.md`: Template ready for questions

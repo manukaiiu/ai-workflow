@@ -1,0 +1,15 @@
+# template-version: 1.0.0
+# template-source: project-hub/_meta/templates/project-root/.gitignore
+# ===========================================
+# Project Root .gitignore
+# ===========================================
+# Use this if the project-root is its own repo (for team sharing)
+
+# Instances are per-developer (not shared)
+6-instances/
+
+# System files
+.DS_Store
+Thumbs.db
+*.swp
+*~

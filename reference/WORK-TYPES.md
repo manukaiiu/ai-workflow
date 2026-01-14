@@ -199,7 +199,7 @@ ai-agent/workplans/[name]/v1/
 
 | Work Type | Templates Folder |
 |-----------|------------------|
-| Feature | `meta/templates/features/` |
-| Bug | `meta/templates/features/` |
-| Maintenance | `meta/templates/maintenance/` |
-| Concept | `meta/templates/concept/` |
+| Feature | `templates/features/` |
+| Bug | `templates/features/` |
+| Maintenance | `templates/maintenance/` |
+| Concept | `templates/concept/` |

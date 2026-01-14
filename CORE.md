@@ -207,7 +207,7 @@ Quick status check - no file changes:
 | Finalizing concept/workplan | Use `>>finalize` protocol | Controlled promotion |
 | User asks to edit finalized output | **Ask first**: "Edit in place, or create new version?" | Protect finalized work |
 | User asks to create file outside work item | **Confirm location** with user | Avoid accidental bypass |
-| Workflow system feedback | `ai-workflow/meta/meta-feedback/` | Always here, both modes |
+| Workflow system feedback | `ai-workflow/feedback/` | Always here, both modes |
 
 **Key rule**: If there's an active work item, outputs belong there until finalized.
 
@@ -241,7 +241,7 @@ When human says these phrases, treat as the corresponding command:
 | Jira ticket structure | [reference/TICKET-TEMPLATES.md](reference/TICKET-TEMPLATES.md) |
 | All extraction ID meanings | [reference/GLOSSARY.md](reference/GLOSSARY.md) |
 | Work type comparison | [reference/WORK-TYPES.md](reference/WORK-TYPES.md) |
-| System feedback/learnings | [meta-feedback/FEEDBACK-INDEX.md](meta-feedback/FEEDBACK-INDEX.md) |
+| System feedback/learnings | [feedback/FEEDBACK-INDEX.md](feedback/FEEDBACK-INDEX.md) |
 
 ---
 
@@ -252,13 +252,12 @@ When human says these phrases, treat as the corresponding command:
 project-hub/
 ├── coordination/                  ← Hub orchestration
 ├── ai-workflow/                   ← Shared workflow system (READ-ONLY)
-│   └── meta/                      ← You are here
-│       ├── CORE.md                ← This file
-│       ├── MODE.md                ← Dual-mode details
-│       ├── protocols/             ← Command details
-│       ├── reference/             ← Conventions, glossary
-│       ├── templates/             ← Document templates
-│       └── meta-feedback/         ← Workflow feedback (WRITE OK)
+│   ├── CORE.md                    ← This file
+│   ├── MODE.md                    ← Dual-mode details
+│   ├── protocols/                 ← Command details
+│   ├── reference/                 ← Conventions, glossary
+│   ├── templates/                 ← Document templates
+│   └── feedback/                  ← Workflow feedback (WRITE OK)
 └── projects/<group>/<project>-root/
     ├── AI-AGENT-ORIENTATION.md    ← Agent entry point (read first)
     ├── CONTEXT.md                 ← Project identity & setup
@@ -276,13 +275,12 @@ project-hub/
 ```
 <project>/
 ├── ai-workflow/                   ← Embedded workflow system
-│   ├── meta/                      ← You are here
-│   │   ├── CORE.md                ← This file
-│   │   ├── MODE.md                ← Dual-mode details
-│   │   ├── protocols/             ← Command details
-│   │   ├── reference/             ← Conventions, glossary
-│   │   ├── templates/             ← Document templates
-│   │   └── meta-feedback/         ← Workflow feedback
+│   ├── CORE.md                    ← This file
+│   ├── MODE.md                    ← Dual-mode details
+│   ├── protocols/                 ← Command details
+│   ├── reference/                 ← Conventions, glossary
+│   ├── templates/                 ← Document templates
+│   ├── feedback/                  ← Workflow feedback
 │   ├── work/                      ← {WORK_ROOT}
 │   ├── knowledge/                 ← {KNOWLEDGE_ROOT}
 │   ├── concepts/                  ← {CONCEPTS_ROOT}

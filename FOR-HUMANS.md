@@ -4,12 +4,12 @@
 
 **First session** - tell the agent to read the system:
 ```
-Please read ai-agent/meta/CORE.md - this explains our workflow system.
+Please read ai-workflow/CORE.md - this explains our workflow system.
 ```
 
 **After context loss** (agent crashed/closed):
 ```
-Please read ai-agent/meta/CORE.md, then >>continue
+Please read ai-workflow/CORE.md, then >>continue
 ```
 
 That's it. The agent handles the rest.
@@ -64,12 +64,12 @@ That's it. The agent handles the rest.
 ## Project Structure
 
 ```
-project-root/ai-agent/
-├── meta/                    ← System docs (you're reading these)
-│   ├── CORE.md             ← Agent reads this every session
-│   ├── protocols/          ← Detailed command protocols
-│   ├── reference/          ← Glossary, conventions
-│   └── templates/          ← Document templates
+ai-workflow/
+├── CORE.md                  ← Agent reads this every session
+├── protocols/               ← Detailed command protocols
+├── reference/               ← Glossary, conventions
+├── templates/               ← Document templates
+├── feedback/                ← Workflow system feedback
 ├── work/                    ← Active work items
 │   ├── 001-feat-login/
 │   ├── 002-maint-deps/
@@ -227,6 +227,6 @@ GATHER → EXTRACT → CONCEPTUALIZE → PLAN → ROADMAP → FINALIZE
 ## Getting Help
 
 - **About a command**: Check the agent - "What does >>test do?"
-- **About documents**: Look in `meta/templates/`
-- **About agent behavior**: Check `meta/CORE.md`
+- **About documents**: Look in `templates/`
+- **About agent behavior**: Check `CORE.md`
 - **Still confused**: Ask the agent: "How does the workflow system work?"

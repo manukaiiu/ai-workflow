@@ -7,12 +7,12 @@ Rules for file organization, naming, and management in the workflow system.
 ## Folder Structure
 
 ```
-project-root/ai-agent/
-├── meta/                           ← System documentation (read-only)
-│   ├── CORE.md                    ← Read every session
-│   ├── protocols/                 ← Protocol files (read on-demand)
-│   ├── reference/                 ← Reference docs (consult as needed)
-│   └── templates/                 ← Document templates
+ai-workflow/
+├── CORE.md                         ← Read every session
+├── protocols/                      ← Protocol files (read on-demand)
+├── reference/                      ← Reference docs (consult as needed)
+├── templates/                      ← Document templates
+├── feedback/                       ← Workflow system feedback
 ├── work/                           ← Active work items
 │   ├── 001-feat-name/
 │   ├── 002-maint-name/

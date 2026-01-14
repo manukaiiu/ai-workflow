@@ -55,7 +55,7 @@ The ai-workflow system is shared. Outputs go to the **active project's folders**
 | Inbox | `3-inbox/` |
 | Instances | `6-instances/` |
 
-**Workflow feedback:** `project-hub/ai-workflow/meta/meta-feedback/`
+**Workflow feedback:** `project-hub/ai-workflow/feedback/`
 (This is the one exception - feedback about the workflow system itself goes here)
 
 ### Standalone Mode
@@ -72,7 +72,7 @@ The ai-workflow system is embedded. Outputs go to **ai-workflow's own folders**.
 | Workplans | `workplans/` |
 | Inbox | `inbox/` |
 
-**Workflow feedback:** `<project>/ai-workflow/meta/meta-feedback/`
+**Workflow feedback:** `<project>/ai-workflow/feedback/`
 
 ---
 
@@ -90,7 +90,7 @@ The ai-workflow system is embedded. Outputs go to **ai-workflow's own folders**.
 5. **Check for active work:**
    - List `<project>-root/5-work/`
    - Read active work item's `00-OVERVIEW.md` if exists
-6. **Reference this system:** Read `ai-workflow/meta/CORE.md` for protocols
+6. **Reference this system:** Read `ai-workflow/CORE.md` for protocols
 
 ### Standalone Mode
 
@@ -109,10 +109,9 @@ The ai-workflow system is embedded. Outputs go to **ai-workflow's own folders**.
 project-hub/
 ├── coordination/           ← Hub-level orchestration
 ├── ai-workflow/            ← Shared workflow system (YOU ARE HERE)
-│   └── meta/
-│       ├── CORE.md
-│       ├── MODE.md         ← This file
-│       └── meta-feedback/  ← Workflow feedback goes here
+│   ├── CORE.md
+│   ├── MODE.md             ← This file
+│   └── feedback/           ← Workflow feedback goes here
 └── projects/
     └── <group>/
         └── <project>-root/
@@ -132,10 +131,9 @@ project-hub/
 ```
 <project>/
 ├── ai-workflow/            ← Embedded workflow system (YOU ARE HERE)
-│   ├── meta/
-│   │   ├── CORE.md
-│   │   ├── MODE.md         ← This file
-│   │   └── meta-feedback/  ← Workflow feedback
+│   ├── CORE.md
+│   ├── MODE.md             ← This file
+│   ├── feedback/           ← Workflow feedback
 │   ├── work/               ← Work items go here
 │   ├── knowledge/
 │   ├── concepts/
@@ -155,7 +153,7 @@ All `>>commands` work identically in both modes. The only difference is **where 
 | `>>start feat X` | `<project>-root/5-work/NNN-feat-X/` | `ai-workflow/work/NNN-feat-X/` |
 | `>>init-knowledge` | `<project>-root/2-knowledge/` | `ai-workflow/knowledge/` |
 | `>>finalize` | `<project>-root/1-concepts/` or `4-workplans/` | `ai-workflow/concepts/` or `workplans/` |
-| `>>feedback` | `ai-workflow/meta/meta-feedback/` | `ai-workflow/meta/meta-feedback/` |
+| `>>feedback` | `ai-workflow/feedback/` | `ai-workflow/feedback/` |
 
 ---
 
@@ -170,7 +168,7 @@ When reading protocols, substitute these variables based on mode:
 | `{CONCEPTS_ROOT}` | `<project>-root/1-concepts/` | `ai-workflow/concepts/` |
 | `{WORKPLANS_ROOT}` | `<project>-root/4-workplans/` | `ai-workflow/workplans/` |
 | `{INBOX_ROOT}` | `<project>-root/3-inbox/` | `ai-workflow/inbox/` |
-| `{FEEDBACK_ROOT}` | `ai-workflow/meta/meta-feedback/` | `ai-workflow/meta/meta-feedback/` |
+| `{FEEDBACK_ROOT}` | `ai-workflow/feedback/` | `ai-workflow/feedback/` |
 
 ---
 

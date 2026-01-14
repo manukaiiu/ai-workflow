@@ -95,7 +95,7 @@ User requests file creation/edit
 | Deliverables | `{WORK_ROOT}/NNN/90-OUTPUTS/` | User decides | Yes, with confirmation |
 | Knowledge docs | `{KNOWLEDGE_ROOT}/` | N/A | Yes |
 | Project code | Project folders | N/A | Yes, per requirements |
-| Workflow feedback | `ai-workflow/meta/meta-feedback/` | N/A | Yes (both modes) |
+| Workflow feedback | `ai-workflow/feedback/` | N/A | Yes (both modes) |
 
 ---
 
@@ -159,4 +159,4 @@ Is that the right location, or did you want it somewhere else?"
 | Protect finalized work | Ask before editing `{CONCEPTS_ROOT}` or `{WORKPLANS_ROOT}` |
 | Confirm when uncertain | Ask about location for anything unusual |
 | Track everything | Work items provide traceability |
-| Feedback always writable | `ai-workflow/meta/meta-feedback/` in both modes |
+| Feedback always writable | `ai-workflow/feedback/` in both modes |
