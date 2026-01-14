@@ -65,11 +65,19 @@ Complete these first, then use >>archive
 
 ### 4. Update Work Index
 
-If `ai-agent/work/WORK-INDEX.md` exists:
+If `{WORK_ROOT}/WORK-INDEX.md` exists:
 - Move entry from "Active Work Items" to "Completed Work Items"
 - Add completion date and one-line summary
 
-### 5. Confirm to Human
+### 5. Update STATUS.md (Project-Hub Mode Only)
+
+If in project-hub mode:
+1. Update `<project>-root/STATUS.md` to reflect completed work
+2. Consider: Is this work item significant enough for the project status?
+
+**Note:** STATUS.md is a narrative of project progress. Don't duplicate WORK-INDEX.md content - instead describe what was accomplished and its impact. For work item details, reference `5-work/WORK-INDEX.md`.
+
+### 6. Confirm to Human
 
 ```
 Verifying completion...
@@ -80,8 +88,9 @@ Verifying completion...
 Created: archive/YYYY-MM-DD-[name]-FINAL.md
 Updated: 00-OVERVIEW.md (status: Complete)
 Updated: WORK-INDEX.md (moved to Completed)
+[Updated: STATUS.md (project-hub mode)]
 
-Work complete! 🎉
+Work complete!
 ```
 
 ---

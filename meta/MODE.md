@@ -81,13 +81,16 @@ The ai-workflow system is embedded. Outputs go to **ai-workflow's own folders**.
 ### Project-Hub Mode
 
 1. **Detect mode** (you're here if parent has `coordination/` + `projects/`)
-2. **Identify active project:**
-   - Check which project context you're working in
-   - Read `projects/<group>/<project>-root/CONTEXT.md`
-3. **Check for active work:**
-   - List `projects/<group>/<project>-root/5-work/`
+2. **Read project orientation:**
+   - `projects/<group>/<project>-root/AI-AGENT-ORIENTATION.md` (agent entry point)
+3. **Read project context:**
+   - `<project>-root/CONTEXT.md` (project identity & setup)
+4. **Check current status:**
+   - `<project>-root/STATUS.md` (living progress doc)
+5. **Check for active work:**
+   - List `<project>-root/5-work/`
    - Read active work item's `00-OVERVIEW.md` if exists
-4. **Reference this system:** Read `ai-workflow/meta/CORE.md` for protocols
+6. **Reference this system:** Read `ai-workflow/meta/CORE.md` for protocols
 
 ### Standalone Mode
 
@@ -113,12 +116,15 @@ project-hub/
 └── projects/
     └── <group>/
         └── <project>-root/
-            ├── CONTEXT.md  ← Project entry point
+            ├── AI-AGENT-ORIENTATION.md  ← Agent entry point (read first)
+            ├── CONTEXT.md               ← Project identity & setup
+            ├── STATUS.md                ← Current progress (living doc)
+            ├── CHANGELOG.md             ← Milestones & releases
             ├── 1-concepts/
             ├── 2-knowledge/
             ├── 3-inbox/
             ├── 4-workplans/
-            ├── 5-work/     ← Work items go here
+            ├── 5-work/                  ← Work items go here
             └── 6-instances/
 ```
 
@@ -173,9 +179,10 @@ When reading protocols, substitute these variables based on mode:
 When working in project-hub mode, you may switch between projects:
 
 1. **Confirm with user** before switching project context
-2. **Read new project's `CONTEXT.md`**
-3. **Check for active work** in the new project's `5-work/`
-4. **Update your mental model** of paths accordingly
+2. **Read new project's `AI-AGENT-ORIENTATION.md`** (entry point)
+3. **Read `CONTEXT.md`** and **check `STATUS.md`**
+4. **Check for active work** in the new project's `5-work/`
+5. **Update your mental model** of paths accordingly
 
 ---
 

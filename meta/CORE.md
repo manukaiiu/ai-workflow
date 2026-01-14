@@ -100,10 +100,11 @@ Check parent folder for `coordination/` and `projects/`:
 
 ### Project-Hub Mode
 
-1. **Identify active project**: Read `projects/<group>/<project>-root/CONTEXT.md`
-2. **Check work index** (if exists): Read `<project>-root/5-work/WORK-INDEX.md`
-3. **Or list work folders**: `ls <project>-root/5-work/`
-4. **If active work exists**: Read that work item's `00-OVERVIEW.md`
+1. **Read orientation**: `projects/<group>/<project>-root/AI-AGENT-ORIENTATION.md`
+2. **Read project context**: `<project>-root/CONTEXT.md`
+3. **Check current status**: `<project>-root/STATUS.md` (living doc of progress)
+4. **Check for active work**: List `<project>-root/5-work/` or read `WORK-INDEX.md`
+5. **If active work exists**: Read that work item's `00-OVERVIEW.md`
 
 ### Standalone Mode
 
@@ -259,7 +260,10 @@ project-hub/
 │       ├── templates/             ← Document templates
 │       └── meta-feedback/         ← Workflow feedback (WRITE OK)
 └── projects/<group>/<project>-root/
-    ├── CONTEXT.md                 ← Project entry point
+    ├── AI-AGENT-ORIENTATION.md    ← Agent entry point (read first)
+    ├── CONTEXT.md                 ← Project identity & setup
+    ├── STATUS.md                  ← Current progress (living doc)
+    ├── CHANGELOG.md               ← Milestones & releases
     ├── 1-concepts/                ← {CONCEPTS_ROOT}
     ├── 2-knowledge/               ← {KNOWLEDGE_ROOT}
     ├── 3-inbox/                   ← {INBOX_ROOT}

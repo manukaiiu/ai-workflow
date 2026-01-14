@@ -22,22 +22,22 @@
 ### 1. Check Knowledge Base (Do First)
 
 Read if they exist:
-- `ai-agent/knowledge/SYSTEM-OVERVIEW.md`
-- `ai-agent/knowledge/CONCEPTS-INDEX.md`
-- `ai-agent/knowledge/COMMANDS.md`
+- `{KNOWLEDGE_ROOT}/SYSTEM-OVERVIEW.md`
+- `{KNOWLEDGE_ROOT}/CONCEPTS-INDEX.md`
+- `{KNOWLEDGE_ROOT}/COMMANDS.md`
 
 Use this context to ask better questions.
 
 ### 2. Ensure Work Directory Exists
 
 ```bash
-mkdir -p ai-agent/work
+mkdir -p {WORK_ROOT}
 ```
 
 ### 3. Determine Work Item Number
 
 **Critical - follow exactly:**
-1. List all folders in `ai-agent/work/`
+1. List all folders in `{WORK_ROOT}/`
 2. Extract numeric prefix from each (e.g., `001` from `001-feat-auth`)
 3. Find HIGHEST number across ALL folders
 4. Next number = highest + 1
@@ -47,7 +47,7 @@ mkdir -p ai-agent/work
 
 ### 4. Create Work Folder
 
-Format: `ai-agent/work/NNN-TYPE-name/`
+Format: `{WORK_ROOT}/NNN-TYPE-name/`
 - 3-digit number (001, 002, etc.)
 - Work type prefix (feat, maint, bug, concept)
 - Kebab-case name
@@ -92,13 +92,13 @@ Don't proceed to implementation planning until human answers.
 
 ### 9. Update Work Index
 
-If `ai-agent/work/WORK-INDEX.md` exists, add entry to "Active Work Items":
+If `{WORK_ROOT}/WORK-INDEX.md` exists, add entry to "Active Work Items":
 
 ```markdown
 | NNN | TYPE | name | Planning | - | YYYY-MM-DD |
 ```
 
-If it doesn't exist, create from template `meta/templates/WORK-INDEX.md`.
+If it doesn't exist, create from template `ai-workflow/meta/templates/WORK-INDEX.md`.
 
 ---
 
@@ -107,16 +107,16 @@ If it doesn't exist, create from template `meta/templates/WORK-INDEX.md`.
 ```
 I'll create the foundation for [TYPE]: [name].
 
-Created work folder: ai-agent/work/NNN-TYPE-name/
+Created work folder: {WORK_ROOT}/NNN-TYPE-name/
 
 Created:
 - 00-OVERVIEW.md (draft)
 - 01-REQUIREMENTS.md / 01-SCOPE.md (draft)
 [- 01-INPUTS/INDEX.md (for concept)]
 
-[If knowledge updated:]
-Updated knowledge:
-- CONCEPTS-INDEX.md: Added [pattern/concept]
+Updated:
+- WORK-INDEX.md (added to Active Work Items)
+[- CONCEPTS-INDEX.md: Added [pattern/concept]]
 
 Questions about [requirements/scope]:
 1. [Question 1]

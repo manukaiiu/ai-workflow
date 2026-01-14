@@ -67,7 +67,20 @@ Update the **Quick Context** section with current state.
 
 If `06-PR-MESSAGE.md` exists, keep it current with latest changes.
 
-### 6. Summarize to Human
+### 6. Update STATUS.md (Project-Hub Mode Only)
+
+If in project-hub mode and significant progress was made:
+
+**Ask yourself:**
+- Did we complete a work item or major milestone?
+- Did project status meaningfully change?
+- Would a human checking STATUS.md expect to see this reflected?
+
+If yes, update `<project>-root/STATUS.md` with current progress.
+
+**Note:** STATUS.md is a narrative of project progress. Don't duplicate WORK-INDEX.md content - instead describe what changed and its significance. For work item details, reference `5-work/WORK-INDEX.md`.
+
+### 7. Summarize to Human
 
 ```
 Session summary:
@@ -79,6 +92,7 @@ Updated:
 - 03-PROGRESS-LOG.md (with handoff)
 - 02-IMPLEMENTATION-PLAN.md (marked Phase X complete)
 - [Any knowledge docs updated]
+- [STATUS.md (if significant progress)]
 
 Next session: [Specific next task]
 ```
@@ -106,6 +120,7 @@ Updated:
 - 03-PROGRESS-LOG.md (with handoff)
 - 02-IMPLEMENTATION-PLAN.md (marked [phases] complete)
 [- knowledge/[file].md (added [insight])]
+[- STATUS.md (project-hub mode, if significant progress)]
 
 Next session: [Specific next task with file path]
 
