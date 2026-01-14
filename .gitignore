@@ -5,9 +5,6 @@
 # ===========================================
 # Use this if the project-root is its own repo (for team sharing)
 
-# Instances are per-developer (not shared)
-6-instances/
-
 # System files
 .DS_Store
 Thumbs.db

@@ -1,114 +1,94 @@
-<!-- template-version: 1.0.0 (customized for ai-workflow) -->
+<!-- template-version: 1.1.0 -->
+<!-- template-source: project-hub/_meta/templates/project-root/AI-AGENT-ORIENTATION.md -->
 
-# AI Agent Orientation: ai-workflow Development
+# AI Agent Orientation
 
-Welcome! You are working on **ai-workflow**, the workflow methodology system for AI agents in project-hub.
+Welcome! This file tells you everything you need to know to work effectively in this project.
 
 ## Quick Start
 
-1. **Read project context:** `CONTEXT.md` (in this folder)
-2. **Check status:** `STATUS.md` for current progress
+1. **Read the workflow system:** `../../../ai-workflow/CORE.md`
+2. **Read project context:** `CONTEXT.md` (in this folder)
 3. **Check active work:** `5-work/` for ongoing tasks
-4. **Understand the handover:** `HANDOVER.md` explains what happened and what remains
 
 ## System Overview
 
-This is a **special project-root** within project-hub. Unlike other projects:
-- This project IS the ai-workflow system itself
-- The workflow content lives directly in this folder (after flattening meta/)
-- An installed copy exists at `project-hub/ai-workflow/` for other projects to read
+This project lives within **project-hub**, a centralized structure for managing multiple projects with AI collaboration.
 
 ```
 project-hub/
-├── ai-workflow/              <- INSTALLED VERSION (copy from here)
-│   ├── CORE.md               <- Entry point for project agents
-│   ├── protocols/
-│   ├── reference/
-│   ├── templates/
-│   └── feedback/             <- Writable by project agents
-│
+├── ai-workflow/          <- Shared workflow system (READ-ONLY)
+│   └── CORE.md           <- Start here for methodology
+├── coordination/         <- Cross-project coordination
+│   ├── PROJECTS.md       <- List of all projects
+│   └── PORTS.json        <- Port allocations
 └── projects/
-    └── system/
-        └── ai-workflow-root/     <- YOU ARE HERE (DEVELOPMENT)
+    └── <group>/
+        └── <project>-root/   <- YOU ARE HERE
             ├── AI-AGENT-ORIENTATION.md  <- This file
-            ├── CONTEXT.md
-            ├── STATUS.md
-            ├── CHANGELOG.md
-            ├── HANDOVER.md              <- Transition instructions
-            │
-            │   (Workflow content - will be copied to installed)
-            ├── CORE.md
-            ├── FOR-HUMANS.md
-            ├── protocols/
-            ├── reference/
-            ├── templates/
-            ├── feedback/
-            │
-            │   (Development artifacts - stay here)
-            ├── 1-concepts/
-            ├── 2-knowledge/
-            ├── 3-inbox/
-            ├── 4-workplans/
-            └── 5-work/
+            ├── CONTEXT.md               <- Project-specific context
+            ├── 1-concepts/              <- Finalized designs
+            ├── 2-knowledge/             <- Project knowledge base
+            ├── 3-inbox/                 <- Incoming items
+            ├── 4-workplans/             <- Approved work plans
+            ├── 5-work/                  <- Active work items
+            └── 6-instances/             <- Dev environments
+                └── <instance>/
+                    ├── DB/
+                    └── <source>/        <- Actual code repo
 ```
 
 ## Critical Rules
 
-### 1. This IS the Development Environment
+### 1. ai-workflow/ is READ-ONLY (with one exception)
 
-You are in the development version of ai-workflow. Changes here need to be released to the installed version:
+The workflow system at `../../../ai-workflow/` is shared across ALL projects.
 
-```bash
-# From project-hub root
-rm -rf ai-workflow
-cp -r projects/system/ai-workflow-root/ai-workflow ai-workflow
-```
+- **DO read** `ai-workflow/CORE.md` for methodology and protocols
+- **DO NOT write** knowledge, work items, or project data to `ai-workflow/`
 
-Wait - that's the future state. First, you need to complete the restructure (see HANDOVER.md).
+**Exception - Feedback:** You MAY write to `../../../ai-workflow/feedback/` to suggest improvements to the workflow system itself. This is the designated channel for agents across all projects to contribute feedback.
 
-### 2. Separate Development from Distribution
+### 2. Project Data Stays Here
+
+All project-specific information belongs in THIS project-root folder:
 
 | What | Where | Notes |
 |------|-------|-------|
-| Workflow content (CORE.md, protocols/, etc.) | This folder (root) | Gets copied to installed |
-| Development knowledge | `2-knowledge/` | Stays here |
-| Work items | `5-work/` | Stays here |
-| Concepts & designs | `1-concepts/` | Stays here |
-| Incoming feedback | `feedback/` | Gets copied to installed |
+| Knowledge & learnings | `2-knowledge/` | Architecture, decisions, domain info |
+| Work items & context | `5-work/` | Active tasks with their own context |
+| Concepts & designs | `1-concepts/` | Finalized specifications |
+| Incoming items | `3-inbox/` | Bug reports, ideas, requirements |
+| Work plans | `4-workplans/` | Approved implementation plans |
 
-### 3. feedback/ is Special
+### 3. Source Code Lives in Instances
 
-The `feedback/` folder receives contributions from project agents across the hub. It must:
-- Exist in both dev and installed versions
-- Be writable in the installed version
-- Be reviewed periodically and incorporated into improvements
+The actual code repository is in `6-instances/<instance>/<source>/`. This is typically a separate git repo.
 
 ## Your Workflow
 
 1. **Start each session** by reading:
-   - `CONTEXT.md` (project identity)
-   - `STATUS.md` (current progress)
-   - `HANDOVER.md` (if transitioning)
-   - `5-work/` (active work items)
+   - `../../../ai-workflow/CORE.md` (methodology)
+   - `CONTEXT.md` (project specifics, current focus)
+   - `5-work/` (any active work items)
 
 2. **During work:**
    - Write knowledge to `2-knowledge/`
    - Track work in `5-work/`
-   - Modify workflow content (CORE.md, protocols/, etc.) directly
+   - Code changes go in `6-instances/<instance>/<source>/`
 
-3. **After significant changes:**
-   - Update `STATUS.md`
-   - Consider releasing to installed version
-   - Update `CHANGELOG.md`
+3. **End of session:**
+   - Update relevant knowledge files
+   - Leave work items in a resumable state
 
 ## Key Files to Read
 
 | Priority | File | Purpose |
 |----------|------|---------|
-| 1 | `CONTEXT.md` | Project identity & current focus |
-| 2 | `STATUS.md` | Current progress |
-| 3 | `HANDOVER.md` | Transition instructions (if present) |
-| 4 | `CORE.md` | The actual workflow methodology |
+| 1 | `../../../ai-workflow/CORE.md` | Workflow methodology |
+| 2 | `CONTEXT.md` | Project context & current focus |
+| 3 | `2-knowledge/architecture.md` | System architecture |
+| 4 | `5-work/` | Active work items |
 
 ## Understanding the Bigger Picture
 
@@ -116,12 +96,34 @@ This project is part of **project-hub**, a unified system for multi-project mana
 
 ### Hub-Level Documentation
 
+If you need to understand the overall system:
+
 | File | Purpose |
 |------|---------|
-| `../../../README.md` | Project-hub overview |
-| `../../../STRUCTURE.md` | Complete folder structure explanation |
-| `../../../_meta/FOLDER-STRUCTURE.md` | Detailed folder spec |
+| `../../../README.md` | Project-hub overview, setup instructions, how to create projects |
+| `../../../STRUCTURE.md` | Complete folder structure explanation, what's tracked by git |
+| `../../../coordination/PROJECTS.md` | List of all projects in this hub |
+| `../../../coordination/PORTS.json` | Port allocations (check before using ports!) |
+
+### Key Concepts
+
+- **project-hub** is a central place managing multiple projects
+- **ai-workflow** provides shared methodology (read-only for projects)
+- **coordination/** contains cross-project resources (ports, project list, workspaces)
+- **projects/** contains all actual project work, grouped by owner/type
+- Each **project-root** is self-contained with concepts, knowledge, work, and instances
+
+### Detailed Specs (if needed)
+
+For deep dives into design decisions:
+
+| File | Purpose |
+|------|---------|
+| `../../../_meta/FOLDER-STRUCTURE.md` | Complete folder hierarchy spec |
+| `../../../_meta/GIT-TOPOLOGY.md` | How git repos are structured |
+| `../../../_meta/PORTS.md` | Port allocation system design |
+| `../../../_meta/DECISIONS.md` | Design decisions and rationale |
 
 ---
 
-*Now proceed to read `CONTEXT.md` and `STATUS.md`.*
+*Now proceed to read `../../../ai-workflow/CORE.md` and then `CONTEXT.md`.*

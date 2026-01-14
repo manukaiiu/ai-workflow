@@ -1,17 +1,18 @@
-<!-- template-version: 1.0.0 (customized for ai-workflow) -->
+<!-- template-version: 1.1.0 -->
+<!-- template-source: project-hub/_meta/templates/project-root/CONTEXT.md -->
 
 # Project Context: ai-workflow
 
 ## Quick Facts
 
-- **Owner:** project-hub system
+- **Client/Owner:** project-hub system
 - **Stack:** Markdown documentation
-- **Status:** Active (undergoing restructure)
-- **Type:** Workflow methodology system for AI agents
+- **Status:** Active
+- **Main Instance:** `6-instances/main/ai-workflow/`
 
 ## Description
 
-**ai-workflow** is the shared workflow methodology system for AI collaboration within project-hub. It provides:
+**ai-workflow** is the workflow methodology system for AI agents in project-hub. It provides:
 
 - Core workflow concepts and protocols (CORE.md)
 - Session management patterns
@@ -19,92 +20,79 @@
 - Handover protocols for session continuity
 - Templates for common documentation patterns
 
-This is a meta-project: it defines how AI agents work across ALL projects in the hub. The methodology documented here is consumed by project agents as a read-only resource.
+This project develops the ai-workflow system. The artifact lives in `6-instances/main/ai-workflow/` and gets copied to `project-hub/ai-workflow/` for other projects to use.
 
-## Current State: Restructure Complete
+## Agent Instructions
 
-This project-root was converted from a dual-purpose repo to a proper project-root structure. The transition is **complete**.
+This project lives within **project-hub**, a centralized system for managing multiple projects.
 
-**What was done:**
-- The ai-workflow repo was moved from `project-hub/ai-workflow/` to `projects/system/ai-workflow-root/`
-- Project-root template files were added (CONTEXT.md, STATUS.md, CHANGELOG.md, numbered folders)
-- `meta/` folder flattened to root level
-- `meta-meta/` content relocated (feedback/ to root, dev docs to 2-knowledge/)
-- Installed version created at `project-hub/ai-workflow/`
-- All internal references updated
+### Important: Centralized Workflow System
 
-**See:** `HANDOVER.md` for historical transition documentation.
+The workflow system (`ai-workflow/`) is **shared and read-only** for projects:
 
-## Folder Structure
+- **Location:** `../../../ai-workflow/CORE.md` (relative to this file)
+- **Do NOT write to ai-workflow/** - it's a shared resource across all projects
+- **Project-specific data stays HERE** in this project-root folder
 
-After restructure completes, this will be the structure:
+### Where Things Live
 
-```
-ai-workflow-root/
-├── AI-AGENT-ORIENTATION.md  <- Start here
-├── CONTEXT.md               <- You are here
-├── STATUS.md
-├── CHANGELOG.md
-├── HANDOVER.md              <- Transition instructions
-│
-│   (Workflow content - copied to installed version)
-├── CORE.md                  <- Main entry for project agents
-├── FOR-HUMANS.md            <- Human-readable overview
-├── protocols/               <- Detailed protocols
-├── reference/               <- Reference documentation
-├── templates/               <- Workflow templates
-├── feedback/                <- Receives feedback from projects
-│
-│   (Development artifacts - stay here)
-├── 1-concepts/              <- Finalized designs for ai-workflow
-├── 2-knowledge/             <- Development knowledge
-├── 3-inbox/                 <- Incoming ideas
-├── 4-workplans/             <- Development plans
-└── 5-work/                  <- Active development work
-```
+| What | Where | Writable? |
+|------|-------|-----------|
+| Workflow methodology | `../../../ai-workflow/` | NO (read-only) |
+| Project knowledge | `2-knowledge/` | YES |
+| Work items & context | `5-work/` | YES |
+| Concepts & designs | `1-concepts/` | YES |
+| The artifact (dev) | `6-instances/main/ai-workflow/` | YES |
 
-## Key Concepts
+### Getting Started
 
-### Dual Nature
+1. **Read the workflow system:** `../../../ai-workflow/CORE.md`
+2. **Read this file completely** for project-specific context
+3. **Check active work:** `5-work/` for ongoing tasks
+4. **Check knowledge base:** `2-knowledge/` for architecture and decisions
 
-This project has two aspects:
-1. **Development:** Where ai-workflow is improved (this project-root)
-2. **Distribution:** The installed copy at `project-hub/ai-workflow/` that projects read
+### Key Files to Know
 
-### Release Process
-
-After making changes:
-
-```bash
-# From project-hub root
-rm -rf ai-workflow
-cp -r projects/system/ai-workflow-root/CORE.md ai-workflow/
-cp -r projects/system/ai-workflow-root/FOR-HUMANS.md ai-workflow/
-cp -r projects/system/ai-workflow-root/protocols ai-workflow/
-cp -r projects/system/ai-workflow-root/reference ai-workflow/
-cp -r projects/system/ai-workflow-root/templates ai-workflow/
-cp -r projects/system/ai-workflow-root/feedback ai-workflow/
-```
-
-(Or a more elegant script once the structure is finalized.)
-
-### feedback/ is Bidirectional
-
-- Project agents write feedback to `project-hub/ai-workflow/feedback/`
-- During development, review this feedback and incorporate improvements
-- The feedback folder exists in both dev and installed versions
+| File | Purpose |
+|------|---------|
+| `6-instances/main/ai-workflow/CORE.md` | The artifact being developed |
+| `2-knowledge/` | Development knowledge |
+| `5-work/` | Current work items |
 
 ## Current Focus
 
-**Immediate priority:** Complete the restructure transition (see HANDOVER.md)
+**Current priority:** Continue ai-workflow methodology improvements
 
-**After restructure:**
-- Review and incorporate any pending feedback
-- Continue methodology improvements
-- Document the release process
+**Recent context:** Restructure completed - ai-workflow now uses proper project-root structure with artifact in `6-instances/main/ai-workflow/`.
+
+## Folder Structure
+
+```
+ai-workflow-root/
+├── CONTEXT.md          ← You are here
+├── AI-AGENT-ORIENTATION.md
+├── STATUS.md
+├── CHANGELOG.md
+├── HANDOVER.md
+│
+├── 1-concepts/         ← Design work
+├── 2-knowledge/        ← Development knowledge
+├── 3-inbox/            ← Incoming ideas
+├── 4-workplans/        ← Development plans
+├── 5-work/             ← Active tasks
+└── 6-instances/
+    └── main/
+        └── ai-workflow/    ← THE ARTIFACT
+            ├── CORE.md
+            ├── protocols/
+            ├── reference/
+            ├── templates/
+            └── feedback/
+```
 
 ## Links
 
-- **Repository:** This folder IS the repository (git repo at root)
-- **Installed version:** `../../../ai-workflow/` (after restructure)
+- **Repository:** This folder IS the repository
+- **Artifact:** `6-instances/main/ai-workflow/`
+- **Installed version:** `../../../ai-workflow/`
 - **Project-hub docs:** `../../../README.md`
